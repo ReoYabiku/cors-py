@@ -20,7 +20,7 @@ app.add_middleware(
 @app.get("/")
 async def root(dammy_id: int = None, cors_app_id: Annotated[str | None, Cookie()] = None):
     return {
-        "message": "問題なし！あやちゃん！",
+        "message": "問題なし！",
         "dammy_id": dammy_id,
         "cors_app_id": cors_app_id,
     }
