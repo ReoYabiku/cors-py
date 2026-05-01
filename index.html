@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORS - Learn</title>
+</head>
+<body>
+  <h1>CORSテスト</h1>
+  <button onclick="fetchData()">データ取得</button>
+  <dev id="result"></dev>
+  <dev id="cookie"></dev>
+
+  <script>
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/', {
+          credentials: 'include',
+        })
+        const data = await response.json()
+        document.getElementById('result').innerText = data.message
+      } catch (err) {
+        document.getElementById('result').innerText = 'エラーだよ！あやちゃん！'
+        console.error(err)
+      }
+    }
+
+    const main = async () => {
+      document.getElementById('cookie').innerText = document.cookie
+      try {
+        await fetch('http://localhost:8000/set-cookie', {
+          credentials: 'include'
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    main()
+  </script>
+</body>
+</html>
